@@ -9,7 +9,7 @@ $mysql_config = array(
     'host' => '127.0.0.1',
     'username' => 'eduuser',
     'password' => 'Eadux23X',
-    'dbname' => 'admin_backend'
+    'dbname' => 'db_rateapp'
 );
 
 //so ban ghi tren 1 trang
