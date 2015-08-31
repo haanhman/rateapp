@@ -48,10 +48,39 @@
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
+<?php
+$form = $data['form'];
+$attrName = $form->attributeLabels();
+?>
 <div class="content" style="width: 460px !important;">
-    <?php $this->renderPartial('form', array('data' => $data)) ?>
-    <?php $this->renderPartial('forget', array('data' => $data)) ?>
-    <?php $this->renderPartial('register', array('data' => $data)) ?>
+    <form class="resetpassword-form" action="" method="post">
+        <h3>Tạo mật khẩu mới</h3>
+        <?php echo CHtml::errorSummary($form); ?>
+        <?php echo showMessage() ?>
+        <p>Tạo mật khẩu mới cho tài khoản: <strong style="color: #4db3a5"><?php echo $data['user']['email'] ?></strong></p>
+        <div class="form-group">
+            <?php
+            $attr = array(
+                'class' => 'form-control placeholder-no-fix',
+                'placeholder' => $attrName['password']
+            );
+            ?>
+            <?php echo CHtml::activePasswordField($form, 'password', $attr) ?>
+        </div>
+
+        <div class="form-group">
+            <?php
+            $attr = array(
+                'class' => 'form-control placeholder-no-fix',
+                'placeholder' => $attrName['re_password']
+            );
+            ?>
+            <?php echo CHtml::activePasswordField($form, 're_password', $attr) ?>
+        </div>
+        <div class="form-actions">
+            <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Cập nhật</button>
+        </div>
+    </form>
     <style type="text/css">
         span.help-block {
             color: red;

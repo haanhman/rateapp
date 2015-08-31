@@ -1964,7 +1964,7 @@ EOD;
         if ($content !== '') {
 
             $str = '<div class="portlet-body"><div class="note note-danger">';
-            $str .= '<h4 class="block">' . Yii::t('yii', 'Please fix the following input errors:') . '</h4>';
+            $str .= '<h4 class="block">' . Yii::t('yii', 'Vui lòng nhập đầy đủ dữ liệu yêu cầu:') . '</h4>';
             $str .= $content . '</div></div>';
 
             return $str;

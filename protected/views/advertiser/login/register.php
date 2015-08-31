@@ -8,7 +8,7 @@ if($data['active'] == 'register') {
 }
 ?>
 
-<form class="register-form" action="index.html" method="post" style="<?php echo $style ?>">
+<form class="register-form" action="" method="post" style="<?php echo $style ?>">
     <h3>Đăng ký</h3>
     <?php echo CHtml::errorSummary($form); ?>
     <div class="form-group">
@@ -59,7 +59,7 @@ if($data['active'] == 'register') {
         ?>
         <?php echo CHtml::activePasswordField($form, 're_password', $attr) ?>
     </div>
-
+    <input type="hidden" name="action" value="register" />
     <div class="form-actions">
         <button type="button" id="register-back-btn" class="btn btn-default">Quay lại</button>
         <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Đăng ký</button>

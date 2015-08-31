@@ -21,10 +21,31 @@ var Login = function () {
                     minlength: 10
                 },
                 "AdvertiseRegisterForm[password]": {
-                    required: true
+                    required: true,
+                    minlength: 6
                 },
                 "AdvertiseRegisterForm[re_password]": {
                     equalTo: "#AdvertiseRegisterForm_password"
+                }
+            },
+            messages: {
+                "AdvertiseRegisterForm[fullname]": {
+                    required: "Vui lòng nhập họ tên"
+                },
+                "AdvertiseRegisterForm[email]": {
+                    required: "Vui lòng nhập ",
+                    email: "Email không đúng định dạng"
+                },
+                "AdvertiseRegisterForm[mobile]": {
+                    required: "Vui lòng nhập số điện thoại",
+                    minlength: "Số điện thoại ít nhất phải có 10 số"
+                },
+                "AdvertiseRegisterForm[password]": {
+                    required: "Vui lòng nhập mật khẩu",
+                    minlength: "Mật khẩu ít nhất phải có 6 ký tự"
+                },
+                "AdvertiseRegisterForm[re_password]": {
+                    equalTo: "Xác nhận mật khẩu không đúng"
                 }
             }
         });

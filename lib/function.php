@@ -496,15 +496,10 @@ function send_mail($from = null, $to, $subject, $content, $cc = array(), $fromNa
 
     require_once ROOT_PATH . '/lib/phpmailer/class.phpmailer.php';
     $server = array('email' => 'noreply.littlestar@gmail.com', 'password' => 'edu123!@#');
-    if ($mail_server == 2) {
-        $server = array('email' => 'noreply.earlystart@gmail.com', 'password' => 'EarlyStart2015');
-    }
+
 
     if ($from == null) {
         $from = $server['email'];
-    }
-    if ($mail_server == 2) {
-        $from = 'contact.earlystart@gmail.com';
     }
 
     $mail = new PHPMailer();

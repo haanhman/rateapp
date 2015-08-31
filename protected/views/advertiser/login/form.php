@@ -26,4 +26,5 @@ if($data['active'] == 'form') {
             <a href="javascript:;" id="register-btn" class="uppercase">Đăng ký</a>
         </p>
     </div>
+    <input type="hidden" name="action" value="form" />
 </form>

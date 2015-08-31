@@ -48,15 +48,16 @@
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
+
 <div class="content" style="width: 460px !important;">
-    <?php $this->renderPartial('form', array('data' => $data)) ?>
-    <?php $this->renderPartial('forget', array('data' => $data)) ?>
-    <?php $this->renderPartial('register', array('data' => $data)) ?>
-    <style type="text/css">
-        span.help-block {
-            color: red;
-        }
-    </style>
+    <h3>Tạo mật khẩu mới thành công</h3>
+    <p>Tạo mật khẩu mới cho ài khoản: <strong style="color: #4db3a5"><?php echo Yii::app()->session['reset_passsword'] ?></strong> thành công</p>
+    <p style="text-align: center">
+        <a href="<?php echo $this->createUrl('index') ?>">Đăng nhập</a>
+    </p>
+    <?php
+        unset(Yii::app()->session['reset_passsword']);
+    ?>
 </div>
 <div class="copyright">
     2015 © anhmantk

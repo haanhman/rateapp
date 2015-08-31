@@ -18,6 +18,8 @@ class AdvertiseRegisterForm extends CFormModel {
             array('re_password', 'compare', 'compareAttribute' => 'password'),
             array('email', 'email'),
             array('email', 'emailUnique'),
+            array('mobile', 'length', 'min' => 10),
+            array('password', 'length', 'min' => 6),
             array('status, email, password, re_password', 'default')
         );
     }
