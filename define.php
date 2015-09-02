@@ -16,6 +16,10 @@ $mysql_config = array(
 define('PAGE_SIZE', 20);
 
 define('ROOT_PATH', dirname(__FILE__));
+
+define('IMAGE_PATH', ROOT_PATH . '/image');
+define('IMAGE_PATH_TMP', ROOT_PATH . '/image/tmp');
+
 define('FRAMEWORK_PATH', ROOT_PATH . '/framework');
 define('YII_DEBUG', $_GET['bug'] == 1 ? TRUE : FALSE);
 if (YII_DEBUG == TRUE) {

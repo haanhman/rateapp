@@ -672,3 +672,78 @@ function strpos_all($haystack, $str)
     }
     return $allpos;
 }
+
+function image_handler($source_image, $destination, $tn_w = 100, $tn_h = 100, $folder = '', $quality = 80)
+{
+    #find out what type of image this is
+    $info = getimagesize($source_image);
+//    if ($info[0] == IMG_WIDTH && $info[1] == IMG_HEIGHT && $folder == 'large') {
+//        copy($source_image, $destination);
+//        return false;
+//    }
+    $imgtype = image_type_to_mime_type($info[2]);
+
+    #assuming the mime type is correct
+    switch ($imgtype) {
+        case 'image/jpeg':
+            $source = imagecreatefromjpeg($source_image);
+            break;
+        case 'image/gif':
+            $source = imagecreatefromgif($source_image);
+            break;
+        case 'image/png':
+            $source = imagecreatefrompng($source_image);
+            break;
+        default:
+            die('Invalid image type.');
+    }
+    #Figure out the dimensions of the image and the dimensions of the desired thumbnail
+    $src_w = imagesx($source);
+    $src_h = imagesy($source);
+    $src_ratio = $src_w / $src_h;
+    #Do some math to figure out which way we'll need to crop the image
+    #to get it proportional to the new size, then crop or adjust as needed
+//    if ($tn_w / $tn_h > $src_ratio) {
+//        $new_h = $tn_w / $src_ratio;
+//        $new_w = $tn_w;
+//    } else {
+//        $new_w = $tn_h * $src_ratio;
+//        $new_h = $tn_h;
+//    }
+//
+//    if ($tn_w > $src_w | $tn_h > $src_h) {
+//        $tn_w = $new_w = $src_w;
+//        $tn_h = $new_h = $src_h;
+//    }
+    $new_w = $tn_w;
+    $new_h = $tn_h;
+    $x_mid = $new_w / 2;
+    $y_mid = $new_h / 2;
+
+    $newpic = imagecreatetruecolor(round($new_w), round($new_h));
+    // preserve transparency
+    if ($imgtype == 'image/png') {
+        imagecolortransparent($newpic, imagecolorallocatealpha($newpic, 0, 0, 0, 127));
+        imagealphablending($newpic, false);
+        imagesavealpha($newpic, true);
+    }
+    imagecopyresampled($newpic, $source, 0, 0, 0, 0, $new_w, $new_h, $src_w, $src_h);
+    $final = imagecreatetruecolor($tn_w, $tn_h);
+    imagecopyresampled($final, $newpic, 0, 0, ($x_mid - ($tn_w / 2)), ($y_mid - ($tn_h / 2)), $tn_w, $tn_h, $tn_w, $tn_h);
+
+    switch ($imgtype) {
+        case 'image/jpeg':
+            return imagejpeg($final, $destination, $quality);
+        case 'image/gif':
+            return imagegif($final, $destination);
+        case 'image/png':
+            return imagepng($newpic, $destination);
+    }
+    return false;
+}
+
+function get_image_file($image_file, $source = false) {
+    if(!$source) {
+        return '/image/' . $image_file;
+    }
+}
